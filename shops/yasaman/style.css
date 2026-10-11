@@ -6,7 +6,7 @@
   display: none !important;
 }
 
-#dairy-status:not(:empty) {
+.load-status:not(:empty) {
   padding: 16px;
   background: #e9f4ed;
   border-radius: 10px;
@@ -363,6 +363,25 @@ section:target, footer:target {
 .product button {
   width: 100%;
   margin-block-start: 12px;
+}
+
+.product.unavailable {
+  background: #f0f0f0;
+  border-color: #b7b7b7;
+}
+
+.unavailable .product-icon {
+  opacity: 0.45;
+  filter: grayscale(1);
+}
+
+.product .stock-label {
+  font-weight: bold;
+}
+
+.product button:disabled {
+  background: #5e625e;
+  cursor: not-allowed;
 }
 
 .banners {
