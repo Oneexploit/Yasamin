@@ -1,4 +1,4 @@
-name: Week 2 Shop CI
+name: Week 3 Shop CI
 
 on:
   push:
@@ -18,9 +18,21 @@ jobs:
         with:
           distribution: temurin
           java-version: '21'
-      - name: Check JavaScript syntax
-        run: node --check shops/yasaman/app.js
-      - name: Check week 2 rules
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: shops/yasaman/package-lock.json
+      - name: Install dependencies
+        working-directory: shops/yasaman
+        run: npm ci
+      - name: Check TypeScript
+        working-directory: shops/yasaman
+        run: npm run check
+      - name: Build the shop
+        working-directory: shops/yasaman
+        run: npm run build
+      - name: Check week 3 page rules
         run: python3 shops/yasaman/check_ci.py
       - name: Download validator
         run: curl --fail --location --retry 3 https://github.com/validator/validator/releases/download/latest/vnu.jar --output "$RUNNER_TEMP/vnu.jar"
