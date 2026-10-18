@@ -1,0 +1,15 @@
+
+> yasaman@1.0.0 check
+> tsc --noEmit
+
+app.ts(75,5): error TS18047: 'carousel' is possibly 'null'.
+app.ts(78,9): error TS18047: 'statusMessage' is possibly 'null'.
+app.ts(83,9): error TS18047: 'carousel' is possibly 'null'.
+app.ts(89,5): error TS18047: 'carousel' is possibly 'null'.
+app.ts(90,5): error TS18047: 'statusMessage' is possibly 'null'.
+app.ts(91,5): error TS2531: Object is possibly 'null'.
+app.ts(91,67): error TS2339: Property 'hidden' does not exist on type 'Element'.
+app.ts(124,9): error TS2531: Object is possibly 'null'.
+app.ts(125,9): error TS2531: Object is possibly 'null'.
+app.ts(130,9): error TS2531: Object is possibly 'null'.
+app.ts(131,9): error TS2531: Object is possibly 'null'.
