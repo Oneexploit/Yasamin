@@ -7,10 +7,10 @@ const isText = (value: unknown): value is string =>
     typeof value === 'string' && value.trim().length > 0;
 
 const isNumber = (value: unknown): value is number =>
-    typeof value === 'number' && Number.isFinite(value) && value >= 0;
+    typeof value === 'number' && Number.isFinite(value) && value >= 0 && value <= Number.MAX_SAFE_INTEGER;
 
 const isId = (value: unknown): value is number =>
-    isNumber(value) && Number.isInteger(value) && value > 0;
+    isNumber(value) && Number.isSafeInteger(value) && value > 0;
 
 const isStrings = (value: unknown): value is string[] =>
     Array.isArray(value) && value.every((item: unknown) => typeof item === 'string');
@@ -31,7 +31,8 @@ export const isOffer = (value: unknown): value is Offer =>
 
 export const isStock = (value: unknown): value is Stock =>
     isRecord(value) && isText(value.updatedAt) && isRecord(value.items) &&
-    Object.values(value.items).every(item => isNumber(item) && Number.isInteger(item));
+    Object.entries(value.items).every(([key, item]) =>
+        /^[1-9]\d*$/.test(key) && isNumber(item) && Number.isSafeInteger(item));
 
 export const isCartLine = (value: unknown): value is CartLine =>
     isRecord(value) && isId(value.id) && isId(value.quantity);
