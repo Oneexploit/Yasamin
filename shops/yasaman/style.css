@@ -384,6 +384,40 @@ section:target, footer:target {
   cursor: not-allowed;
 }
 
+.catalog-tools, #category-filters {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-block: 16px;
+}
+
+#sort {
+  font: inherit;
+  min-height: 44px;
+  padding: 8px;
+  border: 1px solid #a5b8aa;
+  border-radius: 8px;
+  background: white;
+  color: #26372d;
+}
+
+#category-filters button[aria-pressed="true"] {
+  background: #f4d77b;
+  color: #26372d;
+}
+
+.cart-item {
+  padding-block: 16px;
+  border-block-end: 1px solid #d7dfd8;
+  overflow-wrap: anywhere;
+}
+
+select:focus-visible {
+  outline: 3px solid #955b00;
+  outline-offset: 4px;
+}
+
 .banners {
   display: grid;
   grid-template-columns: 1fr 1fr;

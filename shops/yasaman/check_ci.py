@@ -35,9 +35,9 @@ checker.feed(html)
 assert checker.headings == 1, "Use one h1"
 assert checker.scripts == ["/src/main.ts"], "Load app.ts once"
 assert len(checker.ids) == len(set(checker.ids)), "Duplicate IDs found"
-assert all(link in checker.ids or link in ["dairy-1", "dairy-end", "offers-1", "offers-end"] for link in checker.links), "Internal link destination missing"
+assert all(link in checker.ids or link in ["dairy-1", "dairy-end", "offers-1", "offers-end", "catalog-1", "catalog-end"] for link in checker.links), "Internal link destination missing"
 assert "innerHTML" not in script, "Do not render API data with innerHTML"
 assert 'id="dairy-1"' not in html, "Dairy cards must be generated from the API"
 assert 'id="offers-1"' not in html, "Offer cards must be generated from the API"
 assert not (folder / "app.js").exists(), "Remove the old JavaScript source"
-print("Week 3 page rules passed")
+print("Week 4 page rules passed")
