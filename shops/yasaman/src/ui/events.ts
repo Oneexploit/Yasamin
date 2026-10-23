@@ -11,7 +11,7 @@ export const bindEvents = (handlers: Handlers): void => {
         else if (button.dataset.remove !== undefined) handlers.remove(Number(button.dataset.remove));
         else if (button.dataset.category !== undefined) handlers.category(button.dataset.category);
         else if (button.id === 'retry') handlers.retry();
-        else document.querySelector<HTMLElement>('#cart-panel')?.scrollIntoView({ behavior: 'smooth' });
+        else document.querySelector<HTMLElement>('#cart-panel')?.scrollIntoView();
     });
     const search = document.querySelector<HTMLInputElement>('#search');
     const sort = document.querySelector<HTMLSelectElement>('#sort');

@@ -6,7 +6,7 @@ export const isRecord = (value: unknown): value is Record<string, unknown> =>
 const isText = (value: unknown): value is string =>
     typeof value === 'string' && value.trim().length > 0;
 
-const isNumber = (value: unknown): value is number =>
+export const isNumber = (value: unknown): value is number =>
     typeof value === 'number' && Number.isFinite(value) && value >= 0 && value <= Number.MAX_SAFE_INTEGER;
 
 const isId = (value: unknown): value is number =>

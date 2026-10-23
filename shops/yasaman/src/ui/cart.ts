@@ -3,6 +3,7 @@ import type { CartRow } from '../types';
 export const renderCart = (rows: CartRow[]): void => {
     const list = document.querySelector<HTMLDivElement>('#cart-items');
     if (!list) throw new Error('Cart container is missing');
+    const hadFocus = list.contains(document.activeElement);
     list.replaceChildren();
     if (rows.length === 0) {
         const empty = document.createElement('p');
@@ -26,6 +27,11 @@ export const renderCart = (rows: CartRow[]): void => {
         item.append(name, quantity, subtotal, remove);
         list.append(item);
     });
+    if (hadFocus) {
+        const next = list.querySelector<HTMLButtonElement>('button');
+        if (next) next.focus({ preventScroll: true });
+        else list.focus({ preventScroll: true });
+    }
 };
 
 export const renderTotal = (total: string): void => {
