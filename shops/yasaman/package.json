@@ -6,8 +6,9 @@
   "scripts": {
     "dev": "vite",
     "check": "tsc --noEmit",
-    "build": "tsc --noEmit && vite build",
-    "preview": "vite preview"
+    "build": "tsc --noEmit && node check-arch.mjs src --shop && vite build",
+    "preview": "vite preview",
+    "check:arch": "node check-arch.mjs src --shop"
   },
   "dependencies": {
     "canvas-confetti": "^1.9.4",

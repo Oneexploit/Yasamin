@@ -7,7 +7,7 @@
     <meta name="description" content="سوپرمارکت یاسمن؛ خریدهای روزانه با حس خوب تازگی">
     <title>سوپرمارکت یاسمن</title>
     <link rel="stylesheet" href="style.css">
-    <script type="module" src="./app.ts"></script>
+    <script type="module" src="/src/main.ts"></script>
 </head>
 
 <body id="top">
@@ -60,6 +60,7 @@
         </nav>
     </header>
     <main id="main" tabindex="-1">
+        <button id="retry" type="button" hidden>تلاش دوباره</button>
         <section class="hero" aria-labelledby="hero-title">
             <div>
                 <p>به فروشگاه محلهٔ خودت خوش آمدی</p>
@@ -111,6 +112,27 @@
             <p id="dairy-status" class="load-status" role="status" aria-live="polite"></p>
             <section id="dairy-carousel" class="carousel" tabindex="0" aria-busy="true"
                 aria-label="محصولات لبنیات؛ برای حرکت از کلیدهای جهت استفاده کنید"></section>
+        </section>
+        <section id="catalog" class="shop-section" aria-labelledby="catalog-title">
+            <h2 id="catalog-title">همهٔ محصولات فروشگاه</h2>
+            <div class="catalog-tools">
+                <label for="sort">مرتب‌سازی</label>
+                <select id="sort">
+                    <option value="default">ترتیب اصلی</option>
+                    <option value="price-asc">ارزان‌ترین</option>
+                    <option value="price-desc">گران‌ترین</option>
+                </select>
+            </div>
+            <section id="category-filters" aria-label="فیلتر دسته‌بندی"></section>
+            <div class="carousel-controls" hidden><a href="#catalog-1">رفتن به ابتدا</a><a href="#catalog-end">رفتن به انتها</a></div>
+            <p id="catalog-status" class="load-status" role="status" aria-live="polite"></p>
+            <section id="catalog-carousel" class="carousel" tabindex="0" aria-label="همهٔ محصولات" aria-busy="true"></section>
+        </section>
+        <section id="cart-panel" class="category-section" aria-labelledby="cart-title">
+            <h2 id="cart-title">سبد خرید شما</h2>
+            <div id="cart-items" tabindex="-1"></div>
+            <p>جمع کالاها: <strong id="cart-total" aria-live="polite">۰ تومان</strong></p>
+            <p>مبلغ نهایی سفارش باید هنگام خرید توسط سرور تأیید شود.</p>
         </section>
         <section id="fruit" class="category-section" aria-labelledby="fruit-title">
             <h2 id="fruit-title"><span aria-hidden="true">🍎</span> میوه و سبزی</h2>
