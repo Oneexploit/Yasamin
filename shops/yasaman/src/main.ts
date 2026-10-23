@@ -1,4 +1,6 @@
-import type { Product, Offer, Stock, CartLine } from './types';
+import type { Product, Offer, Stock, CartLine, LoadState } from './types';
+import { loadCatalog } from './api/catalog';
+import { renderStatus } from './ui/status';
 import { Notyf } from "notyf";
 import "notyf/notyf.min.css";
 import confetti from "canvas-confetti";
@@ -21,14 +23,6 @@ const notyf = new Notyf({
 });
 
 const priceFormat = new Intl.NumberFormat("fa-IR");
-
-async function readJson<T>(file: string): Promise<T> {
-    const response: Response = await fetch("../../api/" + file);
-    if (!response.ok) {
-        throw new Error("Request failed: " + file);
-    }
-    return await response.json();
-}
 
 const createProductCard = (product: Product, index: number, section: string, stock: Stock, offers: Offer[]): HTMLElement => {
     const card: HTMLElement = document.createElement("article");
@@ -131,18 +125,15 @@ const renderCarousel = (section: string, products: Product[], stock: Stock, offe
     controls.hidden = false;
 };
 
-const loadProducts = async (): Promise<void> => {
-    const messages = document.querySelectorAll<HTMLParagraphElement>(".load-status");
-    messages.forEach(function (message) {
-        message.textContent = "در حال بارگذاری محصولات…";
-    });
+let state: LoadState = { status: 'loading' };
 
+const start = async (): Promise<void> => {
+    renderStatus(state);
     try {
-        const [products, stock, offers] = await Promise.all([
-            readJson<Product[]>("products.json"),
-            readJson<Stock>("stock.json"),
-            readJson<Offer[]>("offers.json")
-        ]);
+        const { products, stock, offers } = await loadCatalog();
+        state = products.length > 0 ? { status: 'success', products } : { status: 'empty' };
+        renderStatus(state);
+        if (state.status !== 'success') return;
 
         const dairyProducts = products.filter(function (product) {
             return product.categoryId === 2;
@@ -160,16 +151,10 @@ const loadProducts = async (): Promise<void> => {
         if (target) {
             target.scrollIntoView();
         }
-    } catch (error) {
-        dairyCarousel.replaceChildren();
-        offersCarousel.replaceChildren();
-        messages.forEach(function (message) {
-            message.textContent = "دریافت محصولات انجام نشد. اتصال اینترنت را بررسی کنید و صفحه را دوباره بارگذاری کنید.";
-        });
-    } finally {
-        dairyCarousel.setAttribute("aria-busy", "false");
-        offersCarousel.setAttribute("aria-busy", "false");
+    } catch (error: unknown) {
+        state = { status: 'error', message: 'دریافت اطلاعات انجام نشد. اتصال را بررسی کنید و دوباره تلاش کنید.' };
+        renderStatus(state);
     }
 };
 
-loadProducts();
+start();
