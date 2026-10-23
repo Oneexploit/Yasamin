@@ -1,7 +1,4 @@
-type Product = { id: number; categoryId: number; name: string; emoji: string; unit: string; price: number; tags: string[] };
-type Offer = { productId: number; percent: number; label: string };
-type Stock = { updatedAt: string; items: Record<string, number> };
-
+import type { Product, Offer, Stock, CartLine } from './types';
 import { Notyf } from "notyf";
 import "notyf/notyf.min.css";
 import confetti from "canvas-confetti";
@@ -15,7 +12,7 @@ if (!cartCount || !cartButton || !dairyCarousel || !offersCarousel) {
     throw new Error("A required page element is missing");
 }
 
-let cart: number = 0;
+const cart: CartLine[] = [];
 const notyf = new Notyf({
     duration: 3000,
     ripple: false,
@@ -84,9 +81,12 @@ const createProductCard = (product: Product, index: number, section: string, sto
         if (!(event.currentTarget instanceof HTMLButtonElement)) {
             return;
         }
-        cart += 1;
-        cartCount.textContent = priceFormat.format(cart);
-        cartButton.setAttribute("aria-label", "سبد خرید، " + priceFormat.format(cart) + " کالا");
+        const line = cart.find(item => item.id === product.id);
+        if (line) line.quantity += 1;
+        else cart.push({ id: product.id, quantity: 1 });
+        const count = cart.reduce((total, item) => total + item.quantity, 0);
+        cartCount.textContent = priceFormat.format(count);
+        cartButton.setAttribute("aria-label", "سبد خرید، " + priceFormat.format(count) + " کالا");
         notyf.success("کالا به سبد خرید اضافه شد");
         confetti({ particleCount: 60, spread: 70, disableForReducedMotion: true });
     });
