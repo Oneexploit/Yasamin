@@ -1,3 +1,7 @@
+type Product = { id: number; categoryId: number; name: string; emoji: string; unit: string; price: number; tags: string[] };
+type Offer = { productId: number; percent: number; label: string };
+type Stock = { updatedAt: string; items: Record<string, number> };
+
 import { Notyf } from "notyf";
 import "notyf/notyf.min.css";
 import confetti from "canvas-confetti";
@@ -21,7 +25,7 @@ const notyf = new Notyf({
 
 const priceFormat = new Intl.NumberFormat("fa-IR");
 
-async function readJson(file: string) {
+async function readJson<T>(file: string): Promise<T> {
     const response: Response = await fetch("../../api/" + file);
     if (!response.ok) {
         throw new Error("Request failed: " + file);
@@ -29,7 +33,7 @@ async function readJson(file: string) {
     return await response.json();
 }
 
-const createProductCard = (product, index: number, section: string, stock, offers): HTMLElement => {
+const createProductCard = (product: Product, index: number, section: string, stock: Stock, offers: Offer[]): HTMLElement => {
     const card: HTMLElement = document.createElement("article");
     card.className = "product";
     card.id = section + "-" + (index + 1);
@@ -101,7 +105,7 @@ const createProductCard = (product, index: number, section: string, stock, offer
     return card;
 };
 
-const renderCarousel = (section: string, products, stock, offers): void => {
+const renderCarousel = (section: string, products: Product[], stock: Stock, offers: Offer[]): void => {
     const carousel = document.querySelector<HTMLElement>("#" + section + "-carousel");
     const statusMessage = document.querySelector<HTMLParagraphElement>("#" + section + "-status");
     const controls = document.querySelector<HTMLDivElement>("#" + section + " .carousel-controls");
@@ -135,9 +139,9 @@ const loadProducts = async (): Promise<void> => {
 
     try {
         const [products, stock, offers] = await Promise.all([
-            readJson("products.json"),
-            readJson("stock.json"),
-            readJson("offers.json")
+            readJson<Product[]>("products.json"),
+            readJson<Stock>("stock.json"),
+            readJson<Offer[]>("offers.json")
         ]);
 
         const dairyProducts = products.filter(function (product) {

@@ -14,7 +14,7 @@ class ShopChecker(HTMLParser):
         values = dict(attributes)
         self.headings += tag == "h1"
         if tag == "script":
-            assert values.get("src") == "./app.ts", "Use the separate app.ts file"
+            assert values.get("src") == "/src/main.ts", "Use the separate app.ts file"
             assert values.get("type") == "module", "Load TypeScript as a module"
             self.scripts.append(values["src"])
         for name, value in attributes:
@@ -29,11 +29,11 @@ class ShopChecker(HTMLParser):
 
 folder = Path(__file__).parent
 html = (folder / "index.html").read_text(encoding="utf-8")
-script = (folder / "app.ts").read_text(encoding="utf-8")
+script = (folder / "src/main.ts").read_text(encoding="utf-8")
 checker = ShopChecker()
 checker.feed(html)
 assert checker.headings == 1, "Use one h1"
-assert checker.scripts == ["./app.ts"], "Load app.ts once"
+assert checker.scripts == ["/src/main.ts"], "Load app.ts once"
 assert len(checker.ids) == len(set(checker.ids)), "Duplicate IDs found"
 assert all(link in checker.ids or link in ["dairy-1", "dairy-end", "offers-1", "offers-end"] for link in checker.links), "Internal link destination missing"
 assert "innerHTML" not in script, "Do not render API data with innerHTML"
