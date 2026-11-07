@@ -39,12 +39,3 @@ export type LoadState =
 export type Catalog = {
     products: Product[]; categories: Category[]; offers: Offer[]; stock: Stock;
 };
-
-export type Handlers = {
-    add: (id: number) => void;
-    remove: (id: number) => void;
-    search: (query: string) => void;
-    category: (value: string) => void;
-    sort: (value: string) => void;
-    retry: () => void;
-};
