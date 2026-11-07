@@ -1,4 +1,4 @@
-import type { CartLine, Catalog, Filters, LoadState, Product, ProductCard } from './types';
+﻿import type { CartLine, Catalog, Filters, LoadState, Product, ProductCard } from './types';
 import { loadCatalog } from './api/catalog';
 import { loadCart, saveCart } from './storage/cart';
 import { addToCart, removeFromCart, cartCount, reconcileCart } from './cart/rules';
@@ -38,7 +38,7 @@ const start = async (): Promise<void> => {
         cart = reconcileCart(cart, catalog.products, catalog.stock);
         saveCart(cart);
         state = catalog.products.length > 0 ? { status: 'success', products: catalog.products } : { status: 'empty' };
-    } catch (error: unknown) {
+    } catch {
         state = { status: 'error', message: 'دریافت اطلاعات انجام نشد. اتصال را بررسی کنید و دوباره تلاش کنید.' };
     }
     render();
@@ -63,3 +63,4 @@ bindEvents({
 });
 
 void start();
+
