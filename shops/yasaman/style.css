@@ -131,6 +131,13 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 }
 
 .cart {
+  display: inline-flex;
+  align-items: center;
+  margin-inline-start: auto;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: #e9f4ed;
+  min-height: 44px;
   white-space: nowrap;
 }
 
