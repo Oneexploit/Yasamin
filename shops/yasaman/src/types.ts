@@ -21,7 +21,7 @@ export type CartRow = Pick<Product, 'id' | 'name'> & {
     quantity: number; price: string; subtotal: string;
 };
 
-export type ProductCard = Product & {
+export type ProductCardData = Product & {
     priceText: string; oldPriceText: string; discountText: string;
     available: boolean;
 };

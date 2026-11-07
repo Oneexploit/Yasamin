@@ -6,15 +6,15 @@
       "products": 43,
       "requests": [
         {
-          "url": "http://127.0.0.1:4173/api/offers.json",
-          "status": 200
-        },
-        {
           "url": "http://127.0.0.1:4173/api/categories.json",
           "status": 200
         },
         {
           "url": "http://127.0.0.1:4173/api/products.json",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4173/api/offers.json",
           "status": 200
         },
         {
@@ -84,5 +84,54 @@
     "test": "StrictMode dev",
     "result": "passed",
     "detail": "Two effect requests, guarded cleanup; page still renders correctly"
+  },
+  {
+    "test": "loading",
+    "result": "passed",
+    "detail": "Readable loading message before any API response"
+  },
+  {
+    "test": "portable static production build",
+    "result": "passed",
+    "detail": {
+      "path": "/shops/yasaman/",
+      "products": 16,
+      "responses": [
+        {
+          "url": "http://127.0.0.1:57216/shops/yasaman/",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:57216/shops/yasaman/assets/index-CZSsr-Jn.css",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:57216/shops/yasaman/assets/index-DAxJ1X2L.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:57216/api/offers.json",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:57216/api/categories.json",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:57216/api/products.json",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:57216/api/stock.json",
+          "status": 200
+        }
+      ],
+      "console": []
+    }
+  },
+  {
+    "test": "development console",
+    "result": "passed",
+    "detail": "No React key, hooks, runtime or browser console warnings/errors with real API"
   }
 ]

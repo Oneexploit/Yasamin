@@ -1,5 +1,5 @@
-import type { ProductCard as Card } from '../types';
-type ProductCardProps = { product: Card; anchor: string; onAdd: (id: number) => void };
+import type { ProductCardData } from '../types';
+type ProductCardProps = { product: ProductCardData; anchor: string; onAdd: (id: number) => void };
 export default function ProductCard({ product, anchor, onAdd }: ProductCardProps) {
     return <article className="product" id={anchor}>
         {product.discountText && <span className="discount">{product.discountText}</span>}
