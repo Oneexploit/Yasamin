@@ -1,6 +1,7 @@
+import Status from './Status';
 import SortSelect from './SortSelect';
 import { visibleProducts } from '../catalog/filter';
-import type { CartLine, Catalog, Sort } from '../types';
+import type { CartLine, Catalog, Sort, LoadState } from '../types';
 import { cartCount } from '../cart/rules';
 import { cartRows, cartTotal } from '../cart/rows';
 import { formatNumber, formatPrice } from '../catalog/pricing';
@@ -13,12 +14,12 @@ import CategoryNav from './CategoryNav';
 import ProductGrid from './ProductGrid';
 import CartPanel from './CartPanel';
 type StorefrontProps = {
-    sort: Sort; onSort: (sort: Sort) => void;
+    state: LoadState; sort: Sort; onSort: (sort: Sort) => void;
     catalog: Catalog; cart: CartLine[]; selected: number | null;
     onPick: (id: number | null) => void; onAdd: (id: number) => void;
     onRemove: (id: number) => void;
 };
-export default function Storefront({ catalog, cart, selected, onPick, onAdd, onRemove, sort, onSort }: StorefrontProps) {
+export default function Storefront({ catalog, cart, selected, onPick, onAdd, onRemove, sort, onSort, state }: StorefrontProps) {
     const { products, categories, offers, stock } = catalog;
     const visible = visibleProducts(products, { categoryId: selected, query: '', sort }, offers);
     return <>
@@ -27,6 +28,8 @@ export default function Storefront({ catalog, cart, selected, onPick, onAdd, onR
         <Header count={formatNumber(cartCount(cart))} />
         <main id="main" tabIndex={-1}>
             <Hero />
+            <Status state={state} />
+            {state.status === 'success' && <>
             <CategoryNav categories={categories} selected={selected} onPick={onPick} />
             <ProductGrid id="offers" title="پیشنهاد ویژه امروز"
                 products={products.filter(product => offers.some(offer => offer.productId === product.id))}
@@ -39,6 +42,7 @@ export default function Storefront({ catalog, cart, selected, onPick, onAdd, onR
                 offers={offers} stock={stock} onAdd={onAdd} />
             <CartPanel rows={cartRows(cart, products, offers)} total={formatPrice(cartTotal(cart, products, offers))}
                 onRemove={onRemove} />
+            </>}
             <ExtraCategories />
         </main>
         <Footer />
