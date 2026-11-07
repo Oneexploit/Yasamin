@@ -10,5 +10,5 @@ const catalog: Catalog = { products: SAMPLE,
     offers: [{ productId: 1, percent: 10, label: 'تخفیف' }], stock: { updatedAt: '', items: { 1: 5, 2: 3, 3: 0 } } };
 export default function App() {
     return <Storefront catalog={catalog} cart={[]} selected={null}
-        onPick={() => {}} onAdd={() => {}} onRemove={() => {}} />;
+        sort="default" onSort={() => {}} onPick={() => {}} onAdd={() => {}} onRemove={() => {}} />;
 }
