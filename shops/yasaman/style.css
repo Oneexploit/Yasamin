@@ -1,3 +1,27 @@
+.app {
+  --bg: #faf9f5;
+  --text: #26372d;
+  --card: #ffffff;
+  --soft: #e9f4ed;
+  --link: #24583e;
+  --muted: #5e625e;
+  --border: #d7dfd8;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.app[data-theme='dark'] {
+  --bg: #161d19;
+  --text: #edf4ef;
+  --card: #25312a;
+  --soft: #304237;
+  --link: #b6e8c6;
+  --muted: #bdc9c1;
+  --border: #53655a;
+  color-scheme: dark;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -8,7 +32,7 @@
 
 .load-status:not(:empty) {
   padding: 16px;
-  background: #e9f4ed;
+  background: var(--soft);
   border-radius: 10px;
 }
 
@@ -19,14 +43,12 @@ html {
 
 body {
   margin: 0;
-  background: #faf9f5;
-  color: #26372d;
   font-family: Tahoma, Arial, sans-serif;
   line-height: 1.8;
 }
 
 a {
-  color: #24583e;
+  color: var(--link);
   text-decoration: none;
 }
 
@@ -58,7 +80,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
   inset-inline-start: 8px;
   z-index: 20;
   padding: 12px;
-  background: white;
+  background: var(--card);
   transform: translateY(-160%);
 }
 
@@ -77,9 +99,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 .header {
   position: sticky;
   inset-block-start: 0;
-  background: white;
+  background: var(--card);
   z-index: 10;
-  border-block-end: 1px solid #d7dfd8;
+  border-block-end: 1px solid var(--border);
 }
 
 .header-content, nav, main, .footer-content, .copyright {
@@ -126,7 +148,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
   min-height: 44px;
   border: 1px solid #a5b8aa;
   border-radius: 10px;
-  background: #f6f8f5;
+  background: var(--bg);
   padding: 8px 12px;
 }
 
@@ -136,7 +158,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
   margin-inline-start: auto;
   padding: 10px 14px;
   border-radius: 10px;
-  background: #e9f4ed;
+  background: var(--soft);
   min-height: 44px;
   white-space: nowrap;
 }
@@ -167,8 +189,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
   inset-inline-start: 0;
   width: 220px;
   padding: 8px;
-  background: white;
-  border: 1px solid #d7dfd8;
+  background: var(--card);
+  border: 1px solid var(--border);
   border-radius: 12px;
   box-shadow: 0 12px 24px #26372d20;
   visibility: hidden;
@@ -184,7 +206,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 }
 
 .dropdown-links a:hover, .footer-links a:hover {
-  background: #e9f4ed;
+  background: var(--soft);
 }
 
 .mobile-menu {
@@ -201,7 +223,7 @@ main {
   justify-content: space-between;
   gap: 20px;
   padding: 36px;
-  background: #e9f4ed;
+  background: var(--soft);
   border-radius: 20px;
 }
 
@@ -247,8 +269,8 @@ h3 {
   justify-content: center;
   text-align: center;
   padding: 16px 8px;
-  background: white;
-  border: 1px solid #d7dfd8;
+  background: var(--card);
+  border: 1px solid var(--border);
   border-radius: 14px;
   font-size: 13px;
 }
@@ -308,8 +330,8 @@ section:target, footer:target {
   flex: 0 0 210px;
   scroll-snap-align: start;
   scroll-snap-stop: always;
-  background: white;
-  border: 1px solid #d7dfd8;
+  background: var(--card);
+  border: 1px solid var(--border);
   border-radius: 14px;
   padding: 18px;
   transition: transform 0.2s;
@@ -334,7 +356,7 @@ section:target, footer:target {
   text-align: center;
   font-size: 60px;
   padding-block: 18px 8px;
-  background: #f6f8f5;
+  background: var(--bg);
   border-radius: 10px;
 }
 
@@ -363,7 +385,7 @@ section:target, footer:target {
 }
 
 .price del {
-  color: #5e625e;
+  color: var(--muted);
   font-size: 12px;
 }
 
@@ -405,7 +427,7 @@ section:target, footer:target {
   padding: 8px;
   border: 1px solid #a5b8aa;
   border-radius: 8px;
-  background: white;
+  background: var(--card);
   color: #26372d;
 }
 
@@ -416,7 +438,7 @@ section:target, footer:target {
 
 .cart-item {
   padding-block: 16px;
-  border-block-end: 1px solid #d7dfd8;
+  border-block-end: 1px solid var(--border);
   overflow-wrap: anywhere;
 }
 
@@ -435,11 +457,11 @@ select:focus-visible {
 .banners > div, .category-section {
   padding: 24px;
   border-radius: 14px;
-  background: #f6ebcf;
+  background: var(--soft);
 }
 
 .banners > div:nth-child(2) {
-  background: #e9f4ed;
+  background: var(--soft);
 }
 
 .banners a, .category-section a {
@@ -449,12 +471,12 @@ select:focus-visible {
 }
 
 .category-section {
-  background: white;
-  border: 1px solid #d7dfd8;
+  background: var(--card);
+  border: 1px solid var(--border);
 }
 
 footer {
-  background: #e9f4ed;
+  background: var(--soft);
   padding: 32px 16px 16px;
 }
 
@@ -538,7 +560,7 @@ address a, .footer-content > div:last-child > a {
     position: absolute;
     inset-block-start: 100%;
     inset-inline: 12px;
-    background: white;
+    background: var(--card);
     border: 1px solid #a5b8aa;
     border-radius: 10px;
     max-height: 50vh;
