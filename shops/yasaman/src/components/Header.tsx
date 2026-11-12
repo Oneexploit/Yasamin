@@ -1,6 +1,13 @@
+import { useEffect } from 'react';
+import { useCartStore } from '../hooks/useCartStore';
+import { cartCount } from '../cart/rules';
+import { formatNumber } from '../catalog/pricing';
 import ThemeToggle from './ThemeToggle';
-type HeaderProps = { count: string };
-export default function Header({ count }: HeaderProps) {
+export default function Header() {
+    const count = useCartStore(state => cartCount(state.lines));
+    useEffect(() => {
+        document.title = '🛒 ' + formatNumber(count) + ' · سوپرمارکت یاسمن';
+    }, [count]);
     return (
 <header className="header">
         <div className="header-content">
@@ -17,7 +24,7 @@ export default function Header({ count }: HeaderProps) {
             </a>
 
             <ThemeToggle />
-            <a className="cart" href="#cart-panel">سبد خرید <span>{count}</span></a>
+            <a className="cart" href="#cart-panel">سبد خرید <span>{formatNumber(count)}</span></a>
         </div>
         <nav aria-label="منوی اصلی">
             <details className="mobile-menu">
