@@ -14,16 +14,12 @@ export default function Footer() {
                 <div className="footer-links">
                     <Link to="/plp/$carouselId" params={{ carouselId: 'offers' }}>پیشنهاد ویژه امروز</Link>
                     <Link to="/plp/$carouselId" params={{ carouselId: 'dairy' }}>لبنیات</Link>
-                    <Link to="/">میوه و سبزی</Link>
-                    <Link to="/">نان و صبحانه</Link>
-                    <Link to="/">نوشیدنی</Link>
-                    <Link to="/">مواد غذایی</Link>
                 </div>
             </div>
             <div>
                 <h2>ساعت کاری</h2>
                 <p>هر روز از ۸ صبح تا ۱۰ شب</p>
-                <Link to="/">بازگشت به بالا ↑</Link>
+                <Link to="/">بازگشت به خانه</Link>
             </div>
         </div>
         <p className="copyright">© ۱۴۰۵ سوپرمارکت یاسمن؛ همهٔ حقوق محفوظ است.</p>

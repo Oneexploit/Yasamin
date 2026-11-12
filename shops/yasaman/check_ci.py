@@ -28,4 +28,9 @@ for file in (folder / 'src').rglob('*'):
     source = file.read_text(encoding='utf-8')
     assert len(source.splitlines()) <= 70, str(file)
     assert 'innerHTML' not in source and 'dangerouslySetInnerHTML' not in source
-print('Week 5 local page checks passed; academy check-shop is a separate check.')
+app = (folder / 'src/App.tsx').read_text(encoding='utf-8')
+assert 'createHashHistory' in app and 'interface Register' in app
+assert 'useState' not in app and 'useEffect' not in app
+for page in ['HomePage', 'PlpPage', 'NotFound']:
+    assert (folder / 'src/components/pages' / (page + '.tsx')).exists()
+print('Week 6 local page checks passed; official academy tool was not available.')
