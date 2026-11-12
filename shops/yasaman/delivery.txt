@@ -1,64 +1,67 @@
-تحویل هفتهٔ پنجم — سطح اصلی، بدون بونس
+تحویل هفتهٔ ششم — سطح اصلی، بدون بونس
 
-شاخه: feat/yasaman-w5-react
-مسیر پروژهٔ شخصی: shops/yasaman
-برای آکادمی نام شاخه باید feat/info-hiding-w5-react باشد.
+شاخهٔ شخصی: feat/yasaman-w6-routes
+شاخهٔ هنرجو در آکادمی: feat/info-hiding-w6-routes
+پروژهٔ شخصی: shops/yasaman
 
-چک‌لیست اصلی:
-[x] shop.json با week برابر 5؛ React، React DOM و plugin-react نصب شده‌اند.
-[x] index.html فقط root و main.tsx در body دارد؛ main.tsx بدون ! است.
-[x] Header، CategoryNav، ProductGrid، ProductCard و CartPanel ساخته شده‌اند.
-[x] props نوع‌دار، destructuring، import type و key پایدار از id.
-[x] دسته و سبد با useState در App؛ توابع خالص سبد حفظ شده‌اند.
-[x] تعداد و جمع هنگام render محاسبه می‌شوند و State جدا نیستند.
-[x] API در یک Effect با deps خالی، Promise.all و ignore در cleanup.
-[x] LoadState و switch؛ خطای HTTP، JSON خراب و حالت خالی مدیریت می‌شوند.
-[x] lazy loadCart؛ Effect ذخیرهٔ cart و Effect عنوان تب.
-[x] main.ts و src/ui حذف؛ همهٔ فایل‌های TS/TSX حداکثر 70 خط.
-[x] check، lint و build بدون خطا؛ preview با API واقعی و Console پاک.
-[x] DESIGN.md شامل درخت کامپوننت‌ها، جدول State و پوشه‌های جدید.
-[ ] خروجی رسمی node scripts/check-shop.mjs <slug>؛ منتظر ابزار آکادمی.
+Definition of Done:
+[x] shop.json با week برابر 6؛ نصب TanStack Router و Zustand.
+[x] lint برابر oxlint src --deny-warnings.
+[x] تم Zustand با persist، selector، دکمهٔ Header و data-theme روی Layout.
+[x] تم بعد از Refresh حفظ می‌شود؛ رنگ‌ها با CSS variables تغییر می‌کنند.
+[x] سبد مشترک Zustand با توابع خالص cart و ذخیره فقط از راه storage.
+[x] هیچ prop سبدی از App و اجزای وسط عبور نمی‌کند؛ تعداد و جمع محاسبه می‌شوند.
+[x] داده در useCatalog داخل hooks؛ App بدون useState و useEffect.
+[x] مسیرهای نوع‌دار در App، Register، createHashHistory، Layout و Outlet.
+[x] خانه، PLP و NotFound؛ پارامتر با useParams({ from }).
+[x] لینک مشاهده همه برای هر کاروسل، تعداد کامل و حداکثر 6 کارت در خانه.
+[x] فهرست کامل کاروسل یا دسته با همان ProductCard؛ پیام برای شناسهٔ ناشناخته.
+[x] صفحات در components/pages؛ هر فایل TS/TSX حداکثر 70 خط.
+[x] Refresh مستقیم PLP، تم و سبد مشترک، Back و Forward سالم.
+[x] check و lint بدون خطا و هشدار؛ build موفق و Console عادی پاک.
+[x] DESIGN.md با جدول مسیر، Storeها و درخت صفحه‌ها.
+[x] تصویر واقعی Profiler و بررسی hooks/props آماده است.
+[معاف طبق اعلام شما از آکادمی] check-shop.mjs و check-arch.mjs موجود نیستند؛ اجرا نشده‌اند.
 
-نکتهٔ بررسی رسمی:
-main عمومی مخزن srcgrp/gang-of-fourty در زمان بررسی، فایل‌های check-shop.mjs و
-check-arch.mjs را ندارد. ابزار هفتهٔ چهارم React را نمی‌شناسد و جایگزین معتبر نیست.
-پس از دریافت فایل‌های رسمی، از ریشهٔ مخزن آکادمی اجرا و خروجی کامل به PR اضافه شود.
-این چک‌لیست ادعای پاس شدن این بررسی را ندارد.
+بونس‌ها انجام نشده‌اند: صفحهٔ محصول، search params مرتب‌سازی، memo و checkout.
 
-هشدار واقعی هنگام مهاجرت:
-src/main.ts:41:14: warning eslint(no-unused-vars): Catch parameter 'error' is caught but never used.
-catch نام استفاده‌نشده داشت؛ به catch بدون متغیر تبدیل شد. سپس کل main.ts قدیمی
-در گام 5 حذف شد. lint نهایی بدون هشدار است و هیچ قانون lint خاموش نشده است.
+پاسخ‌های لازم برای توضیحات PR:
+1. راه سبد: Zustand؛ برای تم هم نصب شده، Provider اضافه نمی‌خواهد و خواندن با selector ساده است.
+2. useThemeStore() به کل store مشترک می‌شود؛ selector theme فقط تغییر همان مقدار را دنبال می‌کند.
+3. مسیرها در App.tsx هستند تا import صفحه‌ها در محل مجاز بماند. صفحه‌ها با useParams({ from })
+   پارامتر نوع‌دار می‌گیرند؛ import مستقیم App چرخهٔ زمان اجرا می‌سازد و لازم نیست.
+4. در Profiler روی PLP یک کالا افزوده شد؛ What caused this update نام Header و CartPanel را
+   نشان می‌دهد، چون شمارنده و خطوط سبد به‌روز شدند. memo اضافه نشده و بونس ادعا نشده است.
+5. آدرس آزموده‌شده پس از Refresh: http://localhost:4173/#/plp/dairy
 
-چرا جمع سبد State نیست؟
-جمع از سبد، قیمت محصولات و تخفیف‌ها به دست می‌آید. ذخیرهٔ جداگانه ممکن است باعث
-عقب ماندن جمع از تغییرات سبد شود. cartTotal هنگام render مقدار تازه را حساب می‌کند.
+مدارک:
+evidence-week6/profiler.png
+evidence-week6/components-plp.png (پارامتر dairy و LoadState success در hooks)
+evidence-week6/components-product.png (props کارت)
+evidence-week6/typed-route-error.txt (خطای واقعی مسیر با carouselID و اصلاح آن)
+evidence-week6/home-preview.png
+evidence-week6/plp-dark-preview.png
+evidence-week6/mobile-dark.png
+evidence-week6/browser-checks.json
 
-اگر cleanup و ignore را برداریم چه می‌شود؟
-درخواست قبلی ممکن است پس از پاک شدن Effect یا شروع اجرای بعدی پاسخ دهد و State را
-با نتیجهٔ قدیمی به‌روز کند. در StrictMode توسعه، Effect آزمایشی هم اجرا می‌شود؛
-ignore پاسخ آن اجرای قبلی را کنار می‌گذارد. خود درخواست شبکه لغو نمی‌شود.
-
-تصویر preview: evidence-week5/preview.png
-نتایج مرورگر: evidence-week5/browser-checks.json
-تصاویر موبایل، سبد، loading، broken، missing و empty در همان پوشه‌اند.
-درخت کامپوننت‌ها و جدول State: DESIGN.md
-
-اجرا از پوشه‌ای که package.json دارد:
+اجرا داخل پوشهٔ دارای package.json:
 npm ci
-npm run dev
 npm run check
 npm run lint
 npm run build
-npm run preview
+npm run dev
+برای خروجی تولیدی: npm run preview
 
-برای هنرجو:
-شاخهٔ هفتهٔ پنجم از نسخهٔ تأییدشدهٔ هفتهٔ چهارم ساخته شود. هر گام کامیت جدا دارد.
-فقط فایل‌های فروشگاه خودتان تغییر کند؛ api و scripts و فایل‌های ریشه تغییر نکنند.
-اگر پروژهٔ قبلی در shops/info-hiding/info-hiding بوده، همان پوشهٔ دارای package.json
-به‌روز شود؛ فایل‌های نامرتبط shops/info-hiding/index.html و style.css دست نخورند.
-پوشهٔ api داخل زیپ نیست؛ API موجود آکادمی استفاده می‌شود.
-برای انتشار تو در تو، .env.production پیش از build باید ../../../api باشد.
-node_modules و dist و .env.*.local کامیت نشوند.
-در مخزن آکادمی PR به main ساخته شود، موارد این فایل و خروجی واقعی check-shop
-به توضیحات PR اضافه شود و لینک PR در پرسلاین ارسال شود. PR را خود هنرجو merge نکند.
+تحویل هنرجو:
+شاخهٔ هفتهٔ ششم از نسخهٔ هفتهٔ پنجم ساخته شود و main طبق راهنمای آکادمی به‌روز و merge شود.
+هر گام کامیت جدا می‌خواهد؛ ZIP نهایی تاریخچهٔ Git را منتقل نمی‌کند. بستهٔ steps برای این کار است.
+فقط پوشهٔ پروژهٔ هنرجو تغییر کند. در چینش قبلی، پوشهٔ دارای package.json همان
+shops/info-hiding/info-hiding بود؛ فایل‌های قدیمی بیرونی index.html و style.css دست نخورند.
+api، scripts و فایل‌های ریشهٔ آکادمی را تغییر ندهید. api آکادمی باید home.json را هم داشته باشد؛
+این فایل در مخزن عمومی آکادمی و API آنلاین موجود است و داخل ZIP پروژه کپی نشده است.
+برای slug آکادمی، name مربوط به persist در useThemeStore می‌تواند info-hiding-theme شود.
+کلید قدیمی سبد حفظ شود تا سبد هفتهٔ قبل باقی بماند.
+اگر URL انتشار /shops/info-hiding/info-hiding/ است، VITE_API_URL تولیدی قبل از build برابر ../../../api باشد.
+node_modules، dist و .env.*.local کامیت نشوند.
+پس از تست، شاخه Push و PR به main آکادمی ساخته شود. چک‌لیست، پاسخ‌ها، درخت و تصویر Profiler
+در توضیحات PR قرار گیرند و لینک همان PR در فرم پرسلاین ارسال شود. PR آکادمی را خود هنرجو merge نکند.

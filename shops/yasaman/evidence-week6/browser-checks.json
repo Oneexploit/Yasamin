@@ -276,5 +276,15 @@
     "test": "static nested production refresh",
     "result": "passed",
     "detail": "Direct PLP refresh works on an ordinary file server at /shops/yasaman/; all resources 200"
+  },
+  {
+    "test": "mobile menu and skip link",
+    "result": "passed",
+    "detail": "Mobile menu closes after navigation; accessible skip link preserves the current PLP route"
+  },
+  {
+    "test": "effect cleanup on navigation",
+    "result": "passed",
+    "detail": "Late home response with stale zero stock cannot overwrite the new PLP cart stock; add still works"
   }
 ]
