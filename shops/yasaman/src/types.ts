@@ -30,12 +30,18 @@ export const SORTS = ['default', 'price-asc', 'price-desc'] as const;
 export type Sort = (typeof SORTS)[number];
 export type Filters = { categoryId: number | null; query: string; sort: Sort };
 
-export type LoadState =
+export type LoadState<T = Catalog> =
     | { status: 'loading' }
-    | { status: 'success'; products: Product[] }
+    | { status: 'success'; data: T }
     | { status: 'empty' }
     | { status: 'error'; message: string };
 
 export type Catalog = {
-    products: Product[]; categories: Category[]; offers: Offer[]; stock: Stock;
+    products: Product[]; categories: Category[]; offers: Offer[]; stock: Stock; home: Home;
 };
+
+export type Carousel = {
+    id: string; title: string; emoji: string;
+    source?: 'offers'; categoryId?: number;
+};
+export type Home = { carousels: Carousel[] };

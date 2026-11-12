@@ -1,3 +1,4 @@
+import { loadHome } from './home';
 import type { Product, Category, Offer, Stock, Catalog } from '../types';
 import { getJSON } from './http';
 import { loadList } from './list';
@@ -14,8 +15,8 @@ export const loadStock = async (): Promise<Stock> => {
 };
 
 export const loadCatalog = async (): Promise<Catalog> => {
-    const [products, categories, offers, stock] = await Promise.all([
-        loadProducts(), loadCategories(), loadOffers(), loadStock()
+    const [products, categories, offers, stock, home] = await Promise.all([
+        loadProducts(), loadCategories(), loadOffers(), loadStock(), loadHome()
     ]);
-    return { products, categories, offers, stock };
+    return { products, categories, offers, stock, home };
 };
