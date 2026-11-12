@@ -1,3 +1,4 @@
+import { Link } from '@tanstack/react-router';
 export default function Footer() {
     return (<>
 <footer id="about">
@@ -11,18 +12,18 @@ export default function Footer() {
             <div>
                 <h2>دسته‌بندی‌ها</h2>
                 <div className="footer-links">
-                    <a href="#offers">پیشنهاد ویژه امروز</a>
-                    <a href="#dairy">لبنیات</a>
-                    <a href="#fruit">میوه و سبزی</a>
-                    <a href="#bakery">نان و صبحانه</a>
-                    <a href="#drinks">نوشیدنی</a>
-                    <a href="#pantry">مواد غذایی</a>
+                    <Link to="/plp/$carouselId" params={{ carouselId: 'offers' }}>پیشنهاد ویژه امروز</Link>
+                    <Link to="/plp/$carouselId" params={{ carouselId: 'dairy' }}>لبنیات</Link>
+                    <Link to="/">میوه و سبزی</Link>
+                    <Link to="/">نان و صبحانه</Link>
+                    <Link to="/">نوشیدنی</Link>
+                    <Link to="/">مواد غذایی</Link>
                 </div>
             </div>
             <div>
                 <h2>ساعت کاری</h2>
                 <p>هر روز از ۸ صبح تا ۱۰ شب</p>
-                <a href="#top">بازگشت به بالا ↑</a>
+                <Link to="/">بازگشت به بالا ↑</Link>
             </div>
         </div>
         <p className="copyright">© ۱۴۰۵ سوپرمارکت یاسمن؛ همهٔ حقوق محفوظ است.</p>

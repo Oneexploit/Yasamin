@@ -624,3 +624,35 @@ address a, .footer-content > div:last-child > a {
     transform: none;
   }
 }
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
+  gap: 16px;
+  margin-block: 24px;
+}
+
+.product-grid .product {
+  min-width: 0;
+}
+
+.carousel-controls button {
+  background: transparent;
+  color: var(--link);
+  text-decoration: underline;
+  padding: 10px 8px;
+}
+
+.theme-toggle {
+  font-size: 13px;
+}
+
+.cart-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  padding-block: 12px;
+  border-block-end: 1px solid var(--border);
+  overflow-wrap: anywhere;
+}

@@ -1,17 +1,18 @@
 import { useEffect } from 'react';
+import { Link } from '@tanstack/react-router';
 import { useCartStore } from '../hooks/useCartStore';
 import { cartCount } from '../cart/rules';
 import { formatNumber } from '../catalog/pricing';
 import ThemeToggle from './ThemeToggle';
+import NavLinks from './NavLinks';
 export default function Header() {
     const count = useCartStore(state => cartCount(state.lines));
     useEffect(() => {
         document.title = '🛒 ' + formatNumber(count) + ' · سوپرمارکت یاسمن';
     }, [count]);
-    return (
-<header className="header">
+    return <header className="header">
         <div className="header-content">
-            <a className="brand" href="#top">
+            <Link className="brand" to="/">
                 <svg width="54" height="54" viewBox="0 0 64 64" role="img" aria-labelledby="logo-title">
                     <title id="logo-title">لوگوی سوپرمارکت یاسمن</title>
                     <circle cx="32" cy="32" r="30" fill="#e9f4ed" />
@@ -21,39 +22,13 @@ export default function Header() {
                     <ellipse cx="39" cy="33" rx="7" ry="4" fill="#f4d77b" />
                 </svg>
                 <span><strong>سوپرمارکت یاسمن</strong><small>تازگی، نزدیک خانهٔ شما</small></span>
-            </a>
-
+            </Link>
             <ThemeToggle />
-            <a className="cart" href="#cart-panel">سبد خرید <span>{formatNumber(count)}</span></a>
+            <Link className="cart" to="/" hash="cart-panel">سبد خرید <span>{formatNumber(count)}</span></Link>
         </div>
         <nav aria-label="منوی اصلی">
-            <details className="mobile-menu">
-                <summary>☰ منوی فروشگاه</summary>
-                <div>
-                    <a href="#offers">پیشنهاد ویژه امروز</a>
-                    <a href="#dairy">لبنیات</a>
-                    <a href="#fruit">میوه و سبزی</a>
-                    <a href="#bakery">نان و صبحانه</a>
-                    <a href="#drinks">نوشیدنی</a>
-                    <a href="#pantry">مواد غذایی</a>
-                    <a href="#about">دربارهٔ ما</a>
-                </div>
-            </details>
-            <div className="desktop-menu">
-                <div className="dropdown"><button type="button">همه دسته‌ها ▾</button>
-                    <div className="dropdown-links">
-                        <a href="#offers">پیشنهاد ویژه امروز</a>
-                        <a href="#dairy">لبنیات</a>
-                        <a href="#fruit">میوه و سبزی</a>
-                        <a href="#bakery">نان و صبحانه</a>
-                        <a href="#drinks">نوشیدنی</a>
-                        <a href="#pantry">مواد غذایی</a>
-                    </div>
-                </div>
-                <a href="#offers">پیشنهاد ویژه امروز</a><a href="#dairy">لبنیات</a><a
-                    href="#categories">دسته‌بندی‌ها</a><a href="#about">دربارهٔ ما</a>
-            </div>
+            <details className="mobile-menu"><summary>☰ منوی فروشگاه</summary><div><NavLinks /></div></details>
+            <div className="desktop-menu"><NavLinks /></div>
         </nav>
-    </header>
-    );
+    </header>;
 }
